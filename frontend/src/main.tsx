@@ -4,8 +4,11 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import App from './App.tsx'
 import './index.css'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000/graphql';
+console.log('[Apollo] Connecting to:', apiUrl);
+
 const client = new ApolloClient({
-  uri: import.meta.env.VITE_API_URL || 'http://localhost:4000/graphql',
+  uri: apiUrl,
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
