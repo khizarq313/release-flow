@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: release_checklist
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: ["5432:5432"]
+  backend:
+    build: ./backend
+    ports: ["4000:4000"]
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/release_checklist
+      PORT: 4000
+    depends_on: [postgres]
+    command: >
+      sh -c "npx prisma migrate deploy && node dist/index.js"
