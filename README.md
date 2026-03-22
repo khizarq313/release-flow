@@ -103,7 +103,7 @@ Build a scalable, beautiful, and highly functional release management system tha
 
 ## 👨‍💻 Author
 
-**Zakariya Qureshi**  
+**Khizar Qureshi**  
 Full Stack Developer
 
 ---
