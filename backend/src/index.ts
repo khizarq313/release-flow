@@ -12,8 +12,16 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
+app.use(cors({
+  origin: [process.env.FRONTEND_URL || '*', 'https://khizarq313.github.io'],
+  credentials: true
+}));
 app.use(json());
+
+// Health check and root route
+app.get('/', (req, res) => {
+  res.send('Release Flow API is running. GraphQL endpoint is at /graphql');
+});
 
 async function startServer() {
   const server = new ApolloServer({
